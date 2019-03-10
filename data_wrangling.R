@@ -14,16 +14,28 @@ natural_gas <- read.csv("data/natural_gas.csv", stringsAsFactors = FALSE)
 
 # data wrangling
 # select only 2016 values
-co2 <- select(co2, ï..State, X2016)
-colnames(co2) <- c("ï..State", "co2")
 
-co2_per_capita <- select(co2_per_capita, ï..State, X2016)
-colnames(co2_per_capita) <- c("ï..State", "co2_per_capita")
+state_colname <- function (data) {
+  colnames(data)[1] = "State"
+  return(data)
+}
 
-combined <- inner_join(biofuel, crude_oil, by = "ï..State") %>%
-  inner_join(., fuel_ethanol, by = "ï..State") %>%
-  inner_join(., natural_gas, by = c("ï..State" = "State")) %>%
-  inner_join(., co2_per_capita, by = "ï..State") %>%
-  inner_join(., co2, by = "ï..State")
+co2 <- state_colname(co2)
+biofuel <- state_colname(biofuel)
+co2_per_capita <- state_colname(co2_per_capita)
+crude_oil <- state_colname(crude_oil)
+fuel_ethanol <- state_colname(fuel_ethanol)
 
-colnames(combined)[1] <- "State"
+co2 <- select(co2, State, X2016)
+colnames(co2) <- c("State", "co2")
+
+co2_per_capita <- select(co2_per_capita, State, X2016)
+colnames(co2_per_capita) <- c("State", "co2_per_capita")
+
+combined <- inner_join(biofuel, crude_oil, by = "State") %>%
+  inner_join(., fuel_ethanol, by = "State") %>%
+  inner_join(., natural_gas, by = "State") %>%
+  inner_join(., co2_per_capita, by = "State") %>%
+  inner_join(., co2, by = "State")
+
+
