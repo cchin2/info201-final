@@ -1,6 +1,5 @@
 source("data_wrangling.R")
 
-
 page_one <- tabPanel(
   "Crude Oil",
   p("Defintion: most common form of fossil fuel made of a mixture of hydrocarbons, found in underground reservoirs."),
@@ -71,5 +70,16 @@ my_ui <- fluidPage(
     page_three,
     page_four,
     page_five
-  )
+  ),
+  selectInput(
+    inputId = "choice_x", label = "X Varaible",
+    choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
+    selected = "Crude_Oil"
+  ),
+  selectInput(
+    inputId = "choice_y", label = "Y Variable",
+    choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
+    selected = "BioFuel"
+  ),
+  plotOutput(outputId = "table2")
 )
