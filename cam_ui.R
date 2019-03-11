@@ -2,14 +2,14 @@ source("data_wrangling.R")
 
 page_one <- tabPanel(
   "Crude Oil",
-  p("Defintion: most common form of fossil fuel made of a mixture of hydrocarbons, found in underground reservoirs."),
+  p(strong("Defintion:"), "most common form of fossil fuel made of a mixture of hydrocarbons, found in underground reservoirs."),
   p("Units: thousands of barrels ")
   
 )
 
 page_two <- tabPanel(
   "Natural Gas",
-  p("Definition: naturally occurring gas made of primarily of methane and other hydrocarbons, found in natural gas 
+  p(strong("Defintion:"), "naturally occurring gas made of primarily of methane and other hydrocarbons, found in natural gas 
      deposits made from hydrocarbons being heated/pressurized into gas."),
   p("Units: millions of cubic feet")
   
@@ -17,7 +17,7 @@ page_two <- tabPanel(
 
 page_three <- tabPanel(
   "Fuel Ethanol",
-  p("Defintion: a renewable fuel that is commonly domestically produced or fermented from agricultural waste,
+  p(strong("Defintion:"), "a renewable fuel that is commonly domestically produced or fermented from agricultural waste,
     grain or corn. Ethanol fuel is also produced in a chemical extraction from ethylene (via hydration)."),
   p("Units: thousand barrels")
   
@@ -25,7 +25,7 @@ page_three <- tabPanel(
 
 page_four <- tabPanel(
   "Biofuel",
-  p("Definition: a renewable fuel that is produced through contemporary biological processes, such as agriculture and anaerobic 
+  p(strong("Defintion:"), "a renewable fuel that is produced through contemporary biological processes, such as agriculture and anaerobic 
     digestion"),
   p("Units: trillion btu")
   
@@ -33,20 +33,20 @@ page_four <- tabPanel(
 
 page_five <- tabPanel(
   "CO2",
-  p("Defintion: a colorless gas made with one carbon atom and two oxygen atoms."),
-  p("Units: million metric tons"),
-  p("CO2 per capita: metric tons of carbon dioxide per person ")
+  p(strong("Defintion:"), "a colorless gas made with one carbon atom and two oxygen atoms."),
+  p(strong("Units:"), "million metric tons"),
+  p(strong("CO2 per capita:"), "metric tons of carbon dioxide per person.")
 )
 
 page_six <- tabPanel(
   "Renewable",
-  p("Renewable energy is generally defined as energy that is collected from resources which are naturally replenished on a human timescale,
+  p(strong("Renewable"), "energy is generally defined as energy that is collected from resources which are naturally replenished on a human timescale,
     such as sunlight, wind, rain, tides, waves, and geothermal heat.")
 )
 
-page_six <- tabPanel(
+page_seven <- tabPanel(
   "Nonrenewable",
-  p("A non-renewable resource (also called a finite resource) is a resource that does not renew itself at a sufficient rate for sustainable
+  p("A ", strong("non-renewable"), " resource (also called a finite resource) is a resource that does not renew itself at a sufficient rate for sustainable
     economic extraction in meaningful human time-frames. ")
 )
 
@@ -69,7 +69,9 @@ my_ui <- fluidPage(
     page_two,
     page_three,
     page_four,
-    page_five
+    page_five,
+    page_six,
+    page_seven
   ),
   selectInput(
     inputId = "choice_x", label = "X Varaible",
