@@ -63,33 +63,42 @@ my_ui <- fluidPage(
             oil. These two fuel options are better than burning coal but are still causes of significant air pollution and 
             are nonrenewable. We will also be examining renewable energy sources like biofuel and ethanol.  ")),
   navbarPage(
-    "Definitions",
-    page_one,
-    page_two,
-    page_three,
-    page_four,
-    page_five,
-    page_six,
-    page_seven
-  ),
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(
-        inputId = "choice_x", label = "X Varaible",
-        choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
-        selected = "Crude_Oil"
+    "My Application",
+    tabPanel(
+      "Data",
+      navbarPage(
+        "Definitions",
+        page_one,
+        page_two,
+        page_three,
+        page_four,
+        page_five,
+        page_six,
+        page_seven
       ),
-      selectInput(
-        inputId = "choice_y", label = "Y Variable",
-        choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
-        selected = "BioFuel"
-      ),
-      radioButtons(inputId = "points_text", label = "Would you like to view points or see state names?",
-         choices = list("States" = 1, "Points" = 2), 
-         selected = 1)
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(
+            inputId = "choice_x", label = "X Varaible",
+            choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
+            selected = "Crude_Oil"
+          ),
+          selectInput(
+            inputId = "choice_y", label = "Y Variable",
+            choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
+            selected = "BioFuel"
+          ),
+          radioButtons(inputId = "points_text", label = "Would you like to view points or see state names?",
+             choices = list("States" = 1, "Points" = 2), 
+             selected = 1)
+        ),
+        mainPanel(
+          plotOutput(outputId = "table2")
+        )
+      )
     ),
-    mainPanel(
-      plotOutput(outputId = "table2")
+    tabPanel(
+      "Tab 2"
     )
   )
 )
