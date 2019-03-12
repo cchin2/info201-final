@@ -1,4 +1,3 @@
-source("my_ui.R")
-source("my_server.R")
+source("my_ui_Great.R")
 
 shinyApp(ui = my_ui, server = my_server)
