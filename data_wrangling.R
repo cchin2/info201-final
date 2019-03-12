@@ -1,6 +1,6 @@
 library("dplyr")
 library("tidyr")
-library("shiny")
+library("ggplot2")
 
 ### references ###
 # https://www.eia.gov/environment/emissions/state/analysis/
@@ -14,71 +14,38 @@ fuel_ethanol <- read.csv("data/fuel_ethanol.csv", stringsAsFactors = FALSE)
 natural_gas <- read.csv("data/natural_gas.csv", stringsAsFactors = FALSE)
 
 # data wrangling
-# select only 2016 values
-co2 <- select(co2, ï..State, X2016)
-colnames(co2) <- c("ï..State", "co2")
-
-co2_per_capita <- select(co2_per_capita, ï..State, X2016)
-colnames(co2_per_capita) <- c("ï..State", "co2_per_capita")
-
-combined <- inner_join(biofuel, crude_oil, by = "ï..State") %>%
-  inner_join(., fuel_ethanol, by = "ï..State") %>%
-  inner_join(., natural_gas, by = c("ï..State" = "State")) %>%
-  inner_join(., co2_per_capita, by = "ï..State") %>%
-  inner_join(., co2, by = "ï..State")
-
-colnames(combined)[1] <- "State"
-
-View(combined)
-combined$biofuel..trillion.btu. <- as.numeric(combined$biofuel..trillion.btu.)
-combined$natural_gas..million.cubic.feet. <- as.numeric(gsub(",", "", combined$natural_gas..million.cubic.feet.))
-combined$crude_oil..thousand.barrels. <- as.numeric(gsub(",", "", combined$crude_oil..thousand.barrels.))
-combined$fuel_ethanol..thousand. <- as.numeric(gsub(",", "", combined$fuel_ethanol..thousand.))
-combined$co2 <- as.numeric(gsub(",", "", combined$co2))
-
-feature <- colnames(combined)[2:5]
-
-my_ui <- fluidPage(
-  
-  #shows the widgets
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(inputId = "feature", 
-                  label = "Energy Used",
-                  choices = feature,
-                  selected = feature[1])
-    ),
-     
-    #shows the result from the widgets in tabs
-    mainPanel(
-      
-      plotOutput(outputId = "plot")
-      
-      
-    )
-  )
-)
-
-
-my_server <- function(input, output) {
-  
-  output$plot <- renderPlot({
-    ggplot(data = combined) + 
-      geom_text(mapping = aes(
-        x = combined$biofuel..trillion.btu.,
-        y = combined$co2,
-        label = combined$State
-      )) +
-      geom_point(mapping = aes(
-        x = combined$biofuel..trillion.btu.,
-        y = combined$co2
-      )) +
-      geom_line(mapping = aes(
-        x = combined$biofuel..trillion.btu.,
-        y = combined$co2
-      ))
-    
-  })
+# Change all the state column names to "State"
+state_colname <- function (data) {
+  colnames(data)[1] = "State"
+  return(data)
 }
 
-shinyApp(ui = my_ui, server = my_server)
+co2 <- state_colname(co2)
+biofuel <- state_colname(biofuel)
+co2_per_capita <- state_colname(co2_per_capita)
+crude_oil <- state_colname(crude_oil)
+fuel_ethanol <- state_colname(fuel_ethanol)
+
+# Select only 2016 values
+co2 <- select(co2, State, X2016)
+colnames(co2) <- c("State", "co2")
+
+# combine all of the csv files by State where they all have matching values
+combined <- inner_join(biofuel, crude_oil, by = "State") %>%
+  inner_join(., fuel_ethanol, by = "State") %>%
+  inner_join(., natural_gas, by = "State") %>%
+  inner_join(., co2_per_capita, by = "State") %>%
+  inner_join(., co2, by = "State")
+
+# remove all of the commas in number and change the values to be numeric
+correct_colnames_numeric <- combined
+colnames(correct_colnames_numeric) <- c("State", "BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas", "CO2_Per_Capita", "CO2")
+correct_colnames_numeric$Crude_Oil <- gsub(",", "", correct_colnames_numeric$Crude_Oil)
+correct_colnames_numeric$Crude_Oil<- as.numeric(correct_colnames_numeric$Crude_Oil)
+correct_colnames_numeric$BioFuel <- as.numeric(correct_colnames_numeric$BioFuel)
+correct_colnames_numeric$Fuel_Ethanol <- gsub(",", "", correct_colnames_numeric$Fuel_Ethanol)
+correct_colnames_numeric$Fuel_Ethanol <- as.numeric(correct_colnames_numeric$Fuel_Ethanol)
+correct_colnames_numeric$Natural_Gas <- gsub(",", "", correct_colnames_numeric$Natural_Gas)
+correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natural_Gas)
+correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
+correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
