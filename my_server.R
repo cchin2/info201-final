@@ -16,6 +16,48 @@ my_server <- function(input, output) {
       }
   })
   
+  output$message_one <- renderText({
+    if(input$choice_x == "BioFuel" & input$choice_x == "BioFuel") {
+      message_one <- paste(
+        "The average amount of biofuel
+        for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
+        max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu."
+      )}
+    else if(input$choice_x == "Crude_Oil" & input$choice_x == "Crude_Oil"){
+      message_one <- paste(
+        "The average amount of crude oil
+        for twenty states is", avg_crude_oil, "thousands of barrels.", "The maximum amount is",
+        max_crude_oil, "thousands of barrels.", "The minimum amount is", min_crude_oil, "thousands of barrels."
+      )
+    }
+    else if(input$choice_x == "Fuel_Ethanol" & input$choice_x == "Fuel_Ethanol"){
+      message_one <- paste(
+        "The average amount of fuel ethanol
+        for twenty states is", avg_fuel_ethanol, "thousands of barrels.", "The maximum amount is",
+        max_fuel_ethanol, "thousands of barrels.", "The minimum amount is", min_fuel_ethanol, "thousands of barrels."
+      )
+    }
+    else if(input$choice_x == "Natural_Gas" & input$choice_x == "Natural_Gas"){
+      message_one <- paste(
+        "The average amount of natural gas
+        for twenty states is", avg_natural_gas, "millions of cubic feet.", "The maximum amount is",
+        max_natural_gas, "millions of cubic feet.", "The minimum amount is", min_natural_gas, "millions of cubic feet."
+      )
+    }
+    else if(input$choice_x == "BioFuel" | input$choice_y == "Crude_Oil"){
+      message_one <- paste(
+        "The average amount of biofuel for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
+        max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu.", 
+        "The average amount of crude oil
+        for twenty states is", avg_crude_oil, "thousands of barrels.", "The maximum amount is",
+        max_crude_oil, "thousands of barrels.", "The minimum amount is", min_crude_oil, "thousands of barrels."
+      )}
+    
+  })
+  
+  
+  
+  
   # Question 2 graph
   output$message1 <- renderText({
     msg <- paste0("These graphs show the percentage share for production of ", 

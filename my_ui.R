@@ -76,7 +76,9 @@ question_one_tab <- tabPanel(
                    selected = 1)
     ),
     mainPanel(
-      plotOutput(outputId = "question_one")
+      plotOutput(outputId = "question_one"),
+      textOutput(outputId = "message_one")
+      
     )
   )
 )
