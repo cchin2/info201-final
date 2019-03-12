@@ -52,6 +52,27 @@ correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natu
 correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
 correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
 
+
+# summary statistic values
+max_bio_fuel <- max(correct_colnames_numeric$BioFuel)
+min_bio_fuel <- min(correct_colnames_numeric$BioFuel)
+avg_bio_fuel <- mean(correct_colnames_numeric$BioFuel)
+max_crude_oil <- max(correct_colnames_numeric$Crude_Oil)
+min_crude_oil <- min(correct_colnames_numeric$Crude_Oil)
+avg_crude_oil <- mean(correct_colnames_numeric$Crude_Oil)
+max_fuel_ethanol <- max(correct_colnames_numeric$Fuel_Ethanol)
+min_fuel_ethanol <- min(correct_colnames_numeric$Fuel_Ethanol)
+avg_fuel_ethanol <- mean(correct_colnames_numeric$Fuel_Ethanol)
+max_natural_gas <- max(correct_colnames_numeric$Natural_Gas)
+min_natural_gas <- min(correct_colnames_numeric$Natural_Gas)
+avg_natural_gas <- mean(correct_colnames_numeric$Natural_Gas)
+max_CO2_Per_capita <- max(correct_colnames_numeric$CO2_Per_Capita)
+min_CO2_Per_capita <- min(correct_colnames_numeric$CO2_Per_Capita)
+avg_CO2_Per_capita <- mean(correct_colnames_numeric$CO2_Per_Capita)
+max_CO2 <- max(correct_colnames_numeric$CO2)
+min_CO2 <- min(correct_colnames_numeric$CO2)
+avg_CO2 <- mean(correct_colnames_numeric$CO2)
+
 # Options for question 2 selection
 selectThis1 <- c("Bio Fuel", "Ethanol")
 selectThis2 <- c("Crude Oil", "Natural Gas")
