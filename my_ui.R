@@ -8,14 +8,8 @@ my_ui <- fluidPage(
   #shows the widgets
   sidebarLayout(
     sidebarPanel(
-      sliderInput(inputId = "slide_key", 
-                  label = "",            
-                  min = , 
-                  max = , 
-                  value =  
-      ),
-      selectInput(inputId = "", 
-                  label = strong(""),
+      selectInput(inputId = "feature", 
+                  label = "Energy Used",
                   choices = unique(),
                   selected = "")
     ),
