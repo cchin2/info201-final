@@ -51,3 +51,6 @@ correct_colnames_numeric$Natural_Gas <- gsub(",", "", correct_colnames_numeric$N
 correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natural_Gas)
 correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
 correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
+
+selectThis1 <- c("Bio Fuel", "Ethanol")
+selectThis2 <- c("Crude Oil", "Natural Gas")
