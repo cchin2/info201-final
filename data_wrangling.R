@@ -52,5 +52,6 @@ correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natu
 correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
 correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
 
+# Options for question 2 selection
 selectThis1 <- c("Bio Fuel", "Ethanol")
 selectThis2 <- c("Crude Oil", "Natural Gas")

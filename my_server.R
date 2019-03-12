@@ -74,19 +74,19 @@ my_server <- function(input, output) {
     pie = pie + geom_text(aes(label = paste0(round(show_pie$Percentage), "%")), position = position_stack(vjust = 0.5))
     pie
   })
-  
+  correct_colnames_numeric
   # Question 3 graph
   output$question_three <- renderPlot({
     ggplot(data = correct_colnames_numeric) +
       if (input$points_text_co2 == 1) {
         geom_label(mapping = aes_string(
-          x = input$choice_x_co2, y = "CO2",
+          x = input$choice_x_co2, y = "CO2_Per_Capita",
           label = "correct_colnames_numeric$State"
-        ))
+        )) 
       } else {
         geom_point(mapping = aes_string(
-          x = input$choice_x, y = "CO2"
-        ))
+          x = input$choice_x_co2, y = "CO2_Per_Capita"
+        )) 
       }
   })
   output$message <- renderText({

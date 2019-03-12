@@ -59,6 +59,12 @@ definitions_tabs <- tabPanel(
 # tab panel for question one
 question_one_tab <- tabPanel(
   "Energy vs Energy",
+  p("We wanted to evaluate whether or not there was a correlation between states using certain energy types. 
+    For example, we wanted to know if states made an equal amount of each energy type or made some more than others.
+    The graph we made represents this correlation. As you can see, with crude oil and biofuel, there is some correlation
+    showing increasing amounts of crude oil also means increasing amounts of biofuel. However, the data show how many 
+    states who make very little crude oil still make lots of biofuel. This could be do to some states choosing to use more 
+    clean energy, or it could be due to the natural resources available."),
   sidebarLayout(
     sidebarPanel(
       selectInput(
@@ -122,6 +128,10 @@ question_two_tab <- tabPanel(
 # tab panel for question three
 question_three_tab <- tabPanel(
   "Energy Vs CO2",
+  p("We wanted to know if there was a relationship between energy production and CO2 emmisions per capita. For example, we 
+    were looking to see if more crude oil production led to higher CO2 emmission levels. We also used per capita data to account
+    for differing population levels. Our analysis does not actually show this trend however, and none of the energies show much a 
+    correlation. There are many factors causing differing CO2 emmsions, so this could make it harder to see correlations."),
   sidebarLayout(
     sidebarPanel(
       selectInput(
