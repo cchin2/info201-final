@@ -14,6 +14,23 @@ fuel_ethanol <- read.csv("data/fuel_ethanol.csv", stringsAsFactors = FALSE)
 natural_gas <- read.csv("data/natural_gas.csv", stringsAsFactors = FALSE)
 
 # data wrangling
+<<<<<<< HEAD
+# select only 2016 values
+co2 <- select(co2, State, X2016)
+colnames(co2) <- c("State", "co2")
+
+co2_per_capita <- select(co2_per_capita, State, X2016)
+colnames(co2_per_capita) <- c("State", "co2_per_capita")
+
+combined <- inner_join(biofuel, crude_oil, by = "State") %>%
+  inner_join(., fuel_ethanol, by = "State") %>%
+  inner_join(., natural_gas, by = c("State" = "State")) %>%
+  inner_join(., co2_per_capita, by = "State") %>%
+  inner_join(., co2, by = "State")
+
+colnames(combined)[1] <- "State"
+
+=======
 # Change all the state column names to "State"
 state_colname <- function (data) {
   colnames(data)[1] = "State"
@@ -29,9 +46,6 @@ fuel_ethanol <- state_colname(fuel_ethanol)
 # Select only 2016 values
 co2 <- select(co2, State, X2016)
 colnames(co2) <- c("State", "co2")
-
-co2_per_capita <- select(co2_per_capita, State, X2016)
-colnames(co2_per_capita) <- c("State", "co2_per_capita")
 
 # combine all of the csv files by State where they all have matching values
 combined <- inner_join(biofuel, crude_oil, by = "State") %>%
@@ -52,3 +66,4 @@ correct_colnames_numeric$Natural_Gas <- gsub(",", "", correct_colnames_numeric$N
 correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natural_Gas)
 correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
 correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
+>>>>>>> 845c800576c07f421b8307784ef4709348326a61
