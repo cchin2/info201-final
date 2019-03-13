@@ -199,7 +199,7 @@ my_ui <- fluidPage(
   titlePanel("Energy Sources and CO2 in the United States"),
   h5("By Cameron Chin, Yilun Sun, and Chaichinda Siritantitam"),
   navbarPage(
-    "My Application",
+    "Our Features",
     summary,
     definitions_tabs,
     question_one_tab,

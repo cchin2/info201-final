@@ -19,7 +19,7 @@ my_server <- function(input, output) {
   })
   
   output$q1_title <- renderText({
-    msg <- paste0("This graph shows ", input$choice_x, " vs ", input$choice_y)
+    msg <- paste0("This Graph Shows ", input$choice_x, " vs ", input$choice_y)
     msg
   })
   
@@ -85,8 +85,6 @@ my_server <- function(input, output) {
     pie = ggplot(show_pie, aes(x = "", y = Percentage, fill = States)) + 
       geom_bar(stat = "identity", width = 1)
     pie = pie + coord_polar("y", start = 0) 
-    #if you want to change color, use this code below
-    #pie = pie + scale_fill_manual(values = c("#e00808", "#33658A", "#2F4858", "#F6AE2D", "#F26419", "#55ADE0", "#999999", "#cb3cd8", "#cb3cd6"))
     pie = pie + geom_text(aes(label = paste0(round(show_pie$Percentage), "%")), position = position_stack(vjust = 0.5))
     pie
   })
@@ -110,8 +108,6 @@ my_server <- function(input, output) {
     pie = ggplot(show_pie, aes(x = "", y = Percentage, fill = States)) + 
       geom_bar(stat = "identity", width = 1)
     pie = pie + coord_polar("y", start = 0) 
-    #if you want to change color, use this code below
-    #pie = pie + scale_fill_manual(values = c("#e00808", "#33658A", "#2F4858", "#F6AE2D", "#F26419", "#55ADE0", "#999999", "#cb3cd8", "#cb3cd6"))
     pie = pie + geom_text(aes(label = paste0(round(show_pie$Percentage), "%")), position = position_stack(vjust = 0.5))
     pie
   })
@@ -135,7 +131,7 @@ my_server <- function(input, output) {
   })
   
   output$q3_title <- renderText({
-    msg <- paste0("This graph shows ", input$choice_x_co2, " vs CO2 per capita")
+    msg <- paste0("This Graph Shows ", input$choice_x_co2, " vs CO2 (per capita)")
     msg
   })
   
@@ -181,5 +177,3 @@ my_server <- function(input, output) {
     }
   })
 }
-
-shinyApp(ui = my_ui, server = my_server)
