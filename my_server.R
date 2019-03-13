@@ -18,11 +18,13 @@ my_server <- function(input, output) {
       }
   })
   
+  # question one title
   output$q1_title <- renderText({
     msg <- paste0("This Graph Shows ", input$choice_x, " vs ", input$choice_y)
     msg
   })
   
+  # question one summary statistics
   output$message_one <- renderText({
     biof <- ""
     crdo <- ""
@@ -57,7 +59,7 @@ my_server <- function(input, output) {
   
   
   
-  # Question 2 graph
+  # Question 2 title
   output$message1 <- renderText({
     msg <- paste0("These graphs show the percentage share for production of ", 
                   input$element1, " and of ", 
@@ -66,6 +68,7 @@ my_server <- function(input, output) {
     msg
   })
   
+  # question 2 graph
   output$plot1 <- renderPlot({
     if(input$element1 == "Bio Fuel"){
       select_value1 <- "BioFuel"
@@ -88,7 +91,6 @@ my_server <- function(input, output) {
     pie = pie + geom_text(aes(label = paste0(round(show_pie$Percentage), "%")), position = position_stack(vjust = 0.5))
     pie
   })
-  
   output$plot2 <- renderPlot({
     if(input$element2 == "Crude Oil"){
       select_value1 <- "Crude_Oil"
@@ -114,6 +116,12 @@ my_server <- function(input, output) {
   
   
   
+  # Question 3 title
+  output$q3_title <- renderText({
+    msg <- paste0("This Graph Shows ", input$choice_x_co2, " vs CO2 (per capita)")
+    msg
+  })
+  
   # Question 3 graph
   output$question_three <- renderPlot({
     x <- find_x_or_y(input$choice_x_co2)
@@ -130,11 +138,7 @@ my_server <- function(input, output) {
       }
   })
   
-  output$q3_title <- renderText({
-    msg <- paste0("This Graph Shows ", input$choice_x_co2, " vs CO2 (per capita)")
-    msg
-  })
-  
+  # Question 3 summary statistics
   output$message <- renderText({
     if(input$choice_x_co2 == "Bio Fuel") {
       message <- paste(

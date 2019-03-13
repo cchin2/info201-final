@@ -45,7 +45,7 @@ page_seven <- tabPanel(
 definitions_tabs <- tabPanel(
   "Definitions",
   navbarPage(
-    title = NULL,
+    title = "Key Words",
     page_one,
     page_two,
     page_three,
@@ -132,7 +132,7 @@ question_two_tab <- tabPanel(
 
 # tab panel for question three
 question_three_tab <- tabPanel(
-  "Energy Vs CO2",
+  "Energy vs CO2",
   p("We wanted to know if there was a relationship between energy production and CO2 emmisions per capita. For example, we 
     were looking to see if more crude oil production led to higher CO2 emmission levels. We also used per capita data to account
     for differing population levels. Our analysis does not actually show this trend however, and none of the energies show much of a 

@@ -3,6 +3,7 @@ library("tidyr")
 library("ggplot2")
 library("maps")
 
+# reads in all of the csv files
 biofuel <- read.csv("data/biofuel.csv", stringsAsFactors = FALSE)
 co2 <- read.csv("data/co2.csv", stringsAsFactors = FALSE)
 co2_per_capita <- read.csv("data/co2_per_capita.csv", stringsAsFactors = FALSE)
@@ -50,7 +51,7 @@ correct_colnames_numeric$Natural_Gas <- as.numeric(correct_colnames_numeric$Natu
 correct_colnames_numeric$CO2_Per_Capita <- as.numeric(correct_colnames_numeric$CO2_Per_Capita)
 correct_colnames_numeric$CO2 <- as.numeric(correct_colnames_numeric$CO2)
 
-# summary statistic values
+# summary statistics for all values
 max_bio_fuel <- max(correct_colnames_numeric$BioFuel)
 min_bio_fuel <- min(correct_colnames_numeric$BioFuel)
 avg_bio_fuel <- mean(correct_colnames_numeric$BioFuel)
@@ -74,7 +75,8 @@ avg_CO2 <- mean(correct_colnames_numeric$CO2)
 selectThis1 <- c("Bio Fuel", "Ethanol")
 selectThis2 <- c("Crude Oil", "Natural Gas")
 
-#
+# function takes in the user input string and returns the correct string
+# to find that data in our data set
 find_x_or_y <- function (variable) {
   if (variable == "Bio Fuel") {
     variable <- "BioFuel"
