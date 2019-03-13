@@ -23,23 +23,23 @@ my_server <- function(input, output) {
     crdo <- ""
     ng <- ""
     fe <- ""
-      if (input$choice_x == "BioFuel" | input$choice_y == "BioFuel") {
+      if (input$choice_x == "Bio Fuel" | input$choice_y == "Bio Fuel") {
           biof <- paste("The average amount of biofuel
           for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
           max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu.")
       }
-      if (input$choice_x == "Crude_Oil" | input$choice_y == "Crude_Oil") {
+      if (input$choice_x == "Crude Oil" | input$choice_y == "Crude Oil") {
           crdo <- paste("The average amount of crude oil
           for twenty states is", avg_crude_oil, "(in thousands of barrels).", "The maximum amount is",
           max_crude_oil, "(in thousands of barrels).", "The minimum amount is", min_crude_oil, "(in thousands of barrels).")
       }
-      if (input$choice_x == "Fuel_Ethanol" | input$choice_y == "Fuel_Ethanol") {
+      if (input$choice_x == "Ethanol" | input$choice_y == "Ethanol") {
         fe <- paste(
           "The average amount of fuel ethanol
           for twenty states is", avg_fuel_ethanol, "(in thousands of barrels).", "The maximum amount is",
           max_fuel_ethanol, "(in thousands of barrels).", "The minimum amount is", min_fuel_ethanol, "(in thousands of barrels).")
       }
-      if (input$choice_x == "Natural_Gas" | input$choice_y == "Natural_Gas") {
+      if (input$choice_x == "Natural Gas" | input$choice_y == "Natural Gas") {
         ng <- paste(
           "The average amount of natural gas
           for twenty states is", avg_natural_gas, "millions of cubic feet.", "The maximum amount is",
@@ -129,7 +129,7 @@ my_server <- function(input, output) {
       }
   })
   output$message <- renderText({
-    if(input$choice_x_co2 == "BioFuel") {
+    if(input$choice_x_co2 == "Bio Fuel") {
       message <- paste(
         "The plot shows the relationship between CO2 emission and ",
         input$choice_x_co2, "of twenty states in 2016.", "The average amount of biofuel
@@ -138,7 +138,7 @@ my_server <- function(input, output) {
         "The average amount of CO2 emission is", avg_CO2, "million metric tons.", "The maximum amount is",
         max_CO2, "million metric tons.", "The minimum amount is", min_CO2, "million metric tons."
       )}
-    else if(input$choice_x_co2 == "Crude_Oil"){
+    else if(input$choice_x_co2 == "Crude Oil"){
       message <- paste(
         "The plot shows the relationship between CO2 emission and ",
         input$choice_x_co2, "of twenty states in 2016.", "The average amount of crude oil
@@ -148,7 +148,7 @@ my_server <- function(input, output) {
         max_CO2, "million metric tons.", "The minimum amount is", min_CO2, "million metric tons."
       )
     }
-    else if(input$choice_x_co2 == "Fuel_Ethanol"){
+    else if(input$choice_x_co2 == "Ethanol"){
       message <- paste(
         "The plot shows the relationship between CO2 emission and ",
         input$choice_x_co2, "of twenty states in 2016.", "The average amount of fuel ethanol
