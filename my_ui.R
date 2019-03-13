@@ -62,9 +62,10 @@ question_one_tab <- tabPanel(
   p("We wanted to evaluate whether or not there was a correlation between states using certain energy types. 
     For example, we wanted to know if states made an equal amount of each energy type or made some more than others.
     The graph we made represents this correlation. As you can see, with crude oil and biofuel, there is some correlation
-    showing increasing amounts of crude oil also means increasing amounts of biofuel. However, the data show how many 
-    states who make very little crude oil still make lots of biofuel. This could be do to some states choosing to use more 
-    clean energy, or it could be due to the natural resources available."),
+    showing increasing amounts of crude oil also means increasing amounts of biofuel. However, the data show how states who 
+    make larger amounts of biofuel tend to make little crude oil. This could be do to some states choosing to use more 
+    clean energy, or it could be due to the natural resources available. Texas is an outlier to both possible trends and 
+    has a crude oil production rate of", max_crude_oil, "(in thousands of barrels)"),
   sidebarLayout(
     sidebarPanel(
       selectInput(
@@ -82,7 +83,9 @@ question_one_tab <- tabPanel(
                    selected = 1)
     ),
     mainPanel(
+      h4(textOutput(outputId = "q1_title")),
       plotOutput(outputId = "question_one"),
+      strong("Summary Statistics:"),
       textOutput(outputId = "message_one")
       
     )
@@ -149,7 +152,9 @@ question_three_tab <- tabPanel(
       )
     ),
     mainPanel(
+      h4(textOutput(outputId = "q3_title")),
       plotOutput(outputId = "question_three"),
+      strong("Summary Statistics:"),
       textOutput(outputId = "message")
     )
   )

@@ -18,6 +18,11 @@ my_server <- function(input, output) {
       }
   })
   
+  output$q1_title <- renderText({
+    msg <- paste0("This graph shows ", input$choice_x, " vs ", input$choice_y)
+    msg
+  })
+  
   output$message_one <- renderText({
     biof <- ""
     crdo <- ""
@@ -128,6 +133,12 @@ my_server <- function(input, output) {
         )) 
       }
   })
+  
+  output$q3_title <- renderText({
+    msg <- paste0("This graph shows ", input$choice_x_co2, " vs CO2 per capita")
+    msg
+  })
+  
   output$message <- renderText({
     if(input$choice_x_co2 == "Bio Fuel") {
       message <- paste(
