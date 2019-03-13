@@ -69,13 +69,13 @@ question_one_tab <- tabPanel(
     sidebarPanel(
       selectInput(
         inputId = "choice_x", label = "X Varaible",
-        choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
-        selected = "Crude_Oil"
+        choices = c("Bio Fuel", "Crude Oil", "Ethanol", "Natural Gas"),
+        selected = "Crude Oil"
       ),
       selectInput(
         inputId = "choice_y", label = "Y Variable",
-        choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
-        selected = "BioFuel"
+        choices = c("Bio Fuel", "Crude Oil", "Ethanol", "Natural Gas"),
+        selected = "Bio Fuel"
       ),
       radioButtons(inputId = "points_text", label = "Would you like to view points or see state names?",
                    choices = list("States" = 1, "Points" = 2), 
@@ -139,8 +139,8 @@ question_three_tab <- tabPanel(
       selectInput(
         inputId = "choice_x_co2",
         label = "X Variable",
-        choices = c("BioFuel", "Crude_Oil", "Fuel_Ethanol", "Natural_Gas"),
-        selected = "Crude_Oil"
+        choices = c("Bio Fuel", "Crude Oil", "Ethanol", "Natural Gas"),
+        selected = "Crude Oil"
       ), 
       radioButtons(
         inputId = "points_text_co2", label = "Would you like to view points or see state names?",

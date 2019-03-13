@@ -3,56 +3,50 @@ source("data_wrangling.R")
 my_server <- function(input, output) {
   # Question 1 graph
   output$question_one <- renderPlot({
+    x <- find_x_or_y(input$choice_x)
+    y <- find_x_or_y(input$choice_y)
     ggplot(data = correct_colnames_numeric) +
       if (input$points_text == 1) {
         geom_label(mapping = aes_string(
-          x = input$choice_x, y = input$choice_y,
+          x = x, y = y,
           label = "correct_colnames_numeric$State"
         ))
       } else {
         geom_point(mapping = aes_string(
-          x = input$choice_x, y = input$choice_y
+          x = x, y = y
         ))
       }
   })
   
   output$message_one <- renderText({
-    if(input$choice_x == "BioFuel" & input$choice_x == "BioFuel") {
-      message_one <- paste(
-        "The average amount of biofuel
-        for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
-        max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu."
-      )}
-    else if(input$choice_x == "Crude_Oil" & input$choice_x == "Crude_Oil"){
-      message_one <- paste(
-        "The average amount of crude oil
-        for twenty states is", avg_crude_oil, "thousands of barrels.", "The maximum amount is",
-        max_crude_oil, "thousands of barrels.", "The minimum amount is", min_crude_oil, "thousands of barrels."
-      )
-    }
-    else if(input$choice_x == "Fuel_Ethanol" & input$choice_x == "Fuel_Ethanol"){
-      message_one <- paste(
-        "The average amount of fuel ethanol
-        for twenty states is", avg_fuel_ethanol, "thousands of barrels.", "The maximum amount is",
-        max_fuel_ethanol, "thousands of barrels.", "The minimum amount is", min_fuel_ethanol, "thousands of barrels."
-      )
-    }
-    else if(input$choice_x == "Natural_Gas" & input$choice_x == "Natural_Gas"){
-      message_one <- paste(
-        "The average amount of natural gas
-        for twenty states is", avg_natural_gas, "millions of cubic feet.", "The maximum amount is",
-        max_natural_gas, "millions of cubic feet.", "The minimum amount is", min_natural_gas, "millions of cubic feet."
-      )
-    }
-    else if(input$choice_x == "BioFuel" | input$choice_y == "Crude_Oil"){
-      message_one <- paste(
-        "The average amount of biofuel for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
-        max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu.", 
-        "The average amount of crude oil
-        for twenty states is", avg_crude_oil, "thousands of barrels.", "The maximum amount is",
-        max_crude_oil, "thousands of barrels.", "The minimum amount is", min_crude_oil, "thousands of barrels."
-      )}
-    
+    biof <- ""
+    crdo <- ""
+    ng <- ""
+    fe <- ""
+      if (input$choice_x == "BioFuel" | input$choice_y == "BioFuel") {
+          biof <- paste("The average amount of biofuel
+          for twenty states is", avg_bio_fuel, "trillion btu.", "The maximum amount is",
+          max_bio_fuel, "trillion btu.", "The minimum amount is", min_bio_fuel, "trillion btu.")
+      }
+      if (input$choice_x == "Crude_Oil" | input$choice_y == "Crude_Oil") {
+          crdo <- paste("The average amount of crude oil
+          for twenty states is", avg_crude_oil, "(in thousands of barrels).", "The maximum amount is",
+          max_crude_oil, "(in thousands of barrels).", "The minimum amount is", min_crude_oil, "(in thousands of barrels).")
+      }
+      if (input$choice_x == "Fuel_Ethanol" | input$choice_y == "Fuel_Ethanol") {
+        fe <- paste(
+          "The average amount of fuel ethanol
+          for twenty states is", avg_fuel_ethanol, "(in thousands of barrels).", "The maximum amount is",
+          max_fuel_ethanol, "(in thousands of barrels).", "The minimum amount is", min_fuel_ethanol, "(in thousands of barrels).")
+      }
+      if (input$choice_x == "Natural_Gas" | input$choice_y == "Natural_Gas") {
+        ng <- paste(
+          "The average amount of natural gas
+          for twenty states is", avg_natural_gas, "millions of cubic feet.", "The maximum amount is",
+          max_natural_gas, "millions of cubic feet.", "The minimum amount is", min_natural_gas, "millions of cubic feet.")
+      }
+    complete_msg <- paste(biof, crdo, ng, fe)
+    complete_msg
   })
   
   
@@ -116,18 +110,21 @@ my_server <- function(input, output) {
     pie = pie + geom_text(aes(label = paste0(round(show_pie$Percentage), "%")), position = position_stack(vjust = 0.5))
     pie
   })
-  correct_colnames_numeric
+  
+  
+  
   # Question 3 graph
   output$question_three <- renderPlot({
+    x <- find_x_or_y(input$choice_x_co2)
     ggplot(data = correct_colnames_numeric) +
       if (input$points_text_co2 == 1) {
         geom_label(mapping = aes_string(
-          x = input$choice_x_co2, y = "CO2_Per_Capita",
+          x = x, y = "CO2_Per_Capita",
           label = "correct_colnames_numeric$State"
         )) 
       } else {
         geom_point(mapping = aes_string(
-          x = input$choice_x_co2, y = "CO2_Per_Capita"
+          x = x, y = "CO2_Per_Capita"
         )) 
       }
   })
@@ -145,8 +142,8 @@ my_server <- function(input, output) {
       message <- paste(
         "The plot shows the relationship between CO2 emission and ",
         input$choice_x_co2, "of twenty states in 2016.", "The average amount of crude oil
-        for twenty states is", avg_crude_oil, "thousands of barrels.", "The maximum amount is",
-        max_crude_oil, "thousands of barrels.", "The minimum amount is", min_crude_oil, "thousands of barrels.",
+        for twenty states is", avg_crude_oil, "(in thousands of barrels).", "The maximum amount is",
+        max_crude_oil, "(in thousands of barrels).", "The minimum amount is", min_crude_oil, "(in thousands of barrels).",
         "The average amount of CO2 emission is", avg_CO2, "million metric tons.", "The maximum amount is",
         max_CO2, "million metric tons.", "The minimum amount is", min_CO2, "million metric tons."
       )
@@ -155,8 +152,8 @@ my_server <- function(input, output) {
       message <- paste(
         "The plot shows the relationship between CO2 emission and ",
         input$choice_x_co2, "of twenty states in 2016.", "The average amount of fuel ethanol
-        for twenty states is", avg_fuel_ethanol, "thousands of barrels.", "The maximum amount is",
-        max_fuel_ethanol, "thousands of barrels.", "The minimum amount is", min_fuel_ethanol, "thousands of barrels.",
+        for twenty states is", avg_fuel_ethanol, "(in thousands of barrels).", "The maximum amount is",
+        max_fuel_ethanol, "(in thousands of barrels).", "The minimum amount is", min_fuel_ethanol, "(in thousands of barrels).",
         "The average amount of CO2 emission is", avg_CO2, "million metric tons.", "The maximum amount is",
         max_CO2, "million metric tons.", "The minimum amount is", min_CO2, "million metric tons."
       )
