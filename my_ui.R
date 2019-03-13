@@ -135,8 +135,10 @@ question_three_tab <- tabPanel(
   "Energy Vs CO2",
   p("We wanted to know if there was a relationship between energy production and CO2 emmisions per capita. For example, we 
     were looking to see if more crude oil production led to higher CO2 emmission levels. We also used per capita data to account
-    for differing population levels. Our analysis does not actually show this trend however, and none of the energies show much a 
-    correlation. There are many factors causing differing CO2 emmsions, so this could make it harder to see correlations."),
+    for differing population levels. Our analysis does not actually show this trend however, and none of the energies show much of a 
+    correlation. There are many factors causing differing CO2 emmsions, so this could make it harder to see correlations. In this data set
+    Texas and North Dakota are both outliers. Texas has a very large crude oil value of ", max_crude_oil, " (in thousands of barrels) and North
+    Dakota has very large CO2 per capita value of ", max_CO2_Per_capita, " (in million metric tons)."),
   sidebarLayout(
     sidebarPanel(
       selectInput(
